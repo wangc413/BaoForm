@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BaoForm · 生产表单</title>
+<meta name="application-name" content="BaoForm">
+<meta name="apple-mobile-web-app-title" content="BaoForm">
+<meta name="theme-color" content="#072E99">
+<meta name="description" content="BaoForm 盒马 / 快乐猴生产表单">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="icon" type="image/svg+xml" href="favicon.svg?v=2">
+<link rel="icon" href="favicon.ico?v=2" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
+<link rel="manifest" href="site.webmanifest?v=2">
+<link rel="stylesheet" href="css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
+</head>
+<body data-brand="hema">
+  <div class="container">
+    <h1>BaoForm 生产表单</h1>
+
+    <select id="channelSelect">
+      <option value="hema">盒马</option>
+      <option value="kuailehou">快乐猴</option>
+    </select>
+
+    <div class="product-switch" id="productSwitch">
+      <button type="button" class="tab active" data-product="roubao">肉包</button>
+      <button type="button" class="tab" data-product="shaomai">烧麦</button>
+      <button type="button" class="tab" data-product="caibao">菜包</button>
+    </div>
+
+    <label for="numInput" id="inputLabel">请输入肉包入库箱数</label>
+    <input type="number" id="numInput" placeholder="" step="any">
+    <button onclick="onCalculate()">计算</button>
+    <div class="result" id="result"></div>
+
+    <div class="tabs" id="tabBar">
+      <button type="button" class="tab active" data-target="materialTable" id="tabMaterial">原料用料计算表</button>
+      <button type="button" class="tab" data-target="requisitionTable">领料单</button>
+      <button type="button" class="tab" data-target="fillingTable" id="tabFilling">制馅单</button>
+      <button type="button" class="tab" data-target="mixfillTable" id="tabMixfill">拌馅记录表</button>
+      <button type="button" class="tab" data-target="doughTable" id="tabDough">和面记录表</button>
+    </div>
+
+    <button type="button" id="printPreviewBtn" class="print-preview-btn">打印预览领料单</button>
+
+    <div class="table-scroll">
+      <table id="materialTable" class="calc-table">
+        <thead>
+          <tr><th colspan="4" class="box-header" id="boxHeader"></th></tr>
+          <tr>
+            <th>原料名称</th>
+            <th>类别</th>
+            <th>单箱使用重量（kg）</th>
+            <th>总使用重量（kg）</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+
+    <div class="table-scroll">
+      <table id="fillingTable" class="calc-table">
+        <thead>
+          <tr>
+            <th>原料名称</th>
+            <th>类别</th>
+            <th>单箱使用重量（kg）</th>
+            <th>总使用重量（kg）</th>
+          </tr>
+        </thead>
+        <tbody id="fillingBody"></tbody>
+      </table>
+    </div>
+
+    <div class="table-scroll">
+      <table id="mixfillTable" class="calc-table">
+        <thead id="mixfillHead"></thead>
+        <tbody id="mixfillBody"></tbody>
+      </table>
+    </div>
+
+    <div class="table-scroll">
+      <table id="doughTable" class="calc-table">
+        <thead id="doughHead"></thead>
+        <tbody id="doughBody"></tbody>
+      </table>
+    </div>
+
+    <div class="table-scroll">
+      <table id="requisitionTable" class="calc-table">
+        <thead>
+          <tr>
+            <th>生产厂家</th>
+            <th>品名及规格</th>
+            <th>单位</th>
+            <th>实领数量</th>
+            <th>批次</th>
+          </tr>
+        </thead>
+        <tbody id="requisitionBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 打印预览弹窗 -->
+  <div class="print-modal" id="printModal">
+    <div class="print-paper">
+      <div class="print-area" id="printArea"></div>
+      <div class="print-actions">
+        <button type="button" id="doPrintBtn">打印</button>
+        <button type="button" id="closePrintBtn">关闭</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 数据层：各渠道独立文件，按顺序注入全局 PRODUCTS -->
+  <script src="js/data/hema.js"></script>
+  <script src="js/data/kuailehou.js"></script>
+  <!-- 逻辑层：依赖 PRODUCTS 已就绪 -->
+  <script src="js/app.js"></script>
+</body>
+</html>

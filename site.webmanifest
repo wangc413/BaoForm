@@ -1,0 +1,19 @@
+{
+  "id": "./calculator.html",
+  "name": "BaoForm",
+  "short_name": "BaoForm",
+  "description": "盒马 / 快乐猴生产表单",
+  "lang": "zh-CN",
+  "dir": "ltr",
+  "start_url": "./calculator.html",
+  "scope": "./",
+  "display": "standalone",
+  "categories": ["productivity", "business"],
+  "prefer_related_applications": false,
+  "background_color": "#F2F8FF",
+  "theme_color": "#072E99",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
